@@ -1,0 +1,27 @@
+[package]
+name = "devnet-pow-cli"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+anyhow = "1.0.66"
+clap = { version = "4.0.26", features = ["derive"] }
+shellexpand = "2.1.2"
+solana-sdk = "1.10.32"
+solana-client = "1.10.32"
+solana-account-decoder = "1.14.7"
+solana-cli-config = "1.14.7"
+borsh = "0.9.3"
+tokio = { version = "1.8.4", features = ["full"] }
+rand = "0.7.3"
+itertools = "0.10.5"
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+bytemuck = "1.13.0"
+reqwest = "0.11.14"
+bincode = "1.3.3"
+proof-of-work-faucet = { version = "0.1.0", path = "../programs/proof-of-work-faucet", features = ["no-entrypoint"] }
+anchor-lang = "0.27.0"
+bs58 = "0.5.0"
