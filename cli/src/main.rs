@@ -89,7 +89,6 @@ async fn main() -> anyhow::Result<()> {
 
     let genesis = client.get_genesis_hash().await?;
 
-    //hardcoded in the genesis hashes for mainnet and devnet
     match genesis.to_string().as_str() {
         "EtWTRABZaYq6iMfeYKouRu166VU2xqa1wcaWoxPkrZBG" => {}
         _ => anyhow::bail!("Genesis hash does not corespond to devnet"),
