@@ -203,6 +203,13 @@ async fn main() -> anyhow::Result<()> {
                 return Ok(());
             }
 
+            if client.get_balance(&payer.pubkey()).await? < 5000 {
+                // Try to request airdrop the normal way if the wallet is completely empty
+                client
+                    .request_airdrop(&payer.pubkey(), 1_000_000_000)
+                    .await?;
+            }
+
             let mut airdropped_amount = 0;
             while airdropped_amount < target_lamports {
                 let signer = Keypair::new();
