@@ -1,10 +1,16 @@
 use anchor_lang::InstructionData;
 use anchor_lang::ToAccountMetas;
 use anyhow::anyhow;
+use borsh::BorshDeserialize;
 use bs58::encode;
 use clap::{Parser, Subcommand};
+use proof_of_work_faucet::Difficulty;
+use solana_account_decoder::UiAccountEncoding;
 use solana_cli_config::{Config, ConfigInput, CONFIG_FILE};
 use solana_client::nonblocking::rpc_client::RpcClient;
+use solana_client::rpc_config::RpcAccountInfoConfig;
+use solana_client::rpc_config::RpcProgramAccountsConfig;
+use solana_client::rpc_filter::RpcFilterType;
 use solana_sdk::instruction::Instruction;
 use solana_sdk::pubkey::Pubkey;
 use solana_sdk::signature::read_keypair_file;
@@ -52,6 +58,8 @@ enum SubCommand {
         reward: f64,
     },
     /// Get faucet address and balance
+    GetAllFaucets,
+    /// Get faucet address and balance
     GetFaucet {
         /// Prefix length
         #[clap(short, long)]
@@ -69,7 +77,7 @@ enum SubCommand {
         /// Reward amount in SOL
         reward: f64,
         /// Target number of lamports to mine for
-        #[clap(short, long, default_value = "1000000000")]
+        #[clap(short, long, default_value = "10000000000")]
         target_lamports: u64,
     },
 }
@@ -144,6 +152,42 @@ async fn main() -> anyhow::Result<()> {
             );
             println!("Faucet spec address: {}", spec);
             println!("Faucet address: {}", faucet);
+            Ok(())
+        }
+        SubCommand::GetAllFaucets => {
+            let config = RpcProgramAccountsConfig {
+                filters: Some(vec![RpcFilterType::DataSize(17)]),
+                account_config: RpcAccountInfoConfig {
+                    encoding: Some(UiAccountEncoding::Binary),
+                    commitment: Some(commitment),
+                    ..RpcAccountInfoConfig::default()
+                },
+                ..RpcProgramAccountsConfig::default()
+            };
+            let specs = client
+                .get_program_accounts_with_config(&proof_of_work_faucet::id(), config)
+                .await?;
+            for (key, spec_bytes) in specs.iter() {
+                let spec = Difficulty::try_from_slice(&spec_bytes.data[8..])?;
+                let difficulty = spec.difficulty;
+                let reward = spec.amount as f64 / 1e9;
+                let (faucet, _) = Pubkey::find_program_address(
+                    &[b"source", key.as_ref()],
+                    &proof_of_work_faucet::id(),
+                );
+                let balance = client.get_balance(&faucet).await?;
+                if balance > 0 {
+                    println!("Faucet address: {}", faucet);
+                    println!("Faucet balance: {} SOL", balance as f64 / 1e9);
+                    println!("Difficulty: {}", difficulty);
+                    println!("Reward: {}", reward);
+                    println!(
+                        "Command: devnet-pow mine -d {} --reward {} -ud",
+                        difficulty, reward
+                    );
+                    println!()
+                }
+            }
             Ok(())
         }
         SubCommand::GetFaucet { difficulty, reward } => {
