@@ -1,6 +1,6 @@
 [package]
 name = "devnet-pow"
-version = "0.1.0"
+version = "0.1.1"
 edition = "2021"
 description = "A CLI tool for mining devnet SOL"
 license = "MIT"

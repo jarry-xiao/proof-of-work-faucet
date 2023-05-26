@@ -268,7 +268,7 @@ async fn main() -> anyhow::Result<()> {
 
                 match client.send_and_confirm_transaction(&transaction).await {
                     Ok(txid) => {
-                        println!("Recieved {} SOL from faucet: {}", reward, txid);
+                        println!("Received {} SOL from faucet: {}", reward, txid);
                         airdropped_amount += amount;
                     }
                     Err(e) => {
