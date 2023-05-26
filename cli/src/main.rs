@@ -57,7 +57,7 @@ enum SubCommand {
         #[clap(long)]
         reward: f64,
     },
-    /// Get faucet address and balance
+    /// Get all faucets
     GetAllFaucets,
     /// Get faucet address and balance
     GetFaucet {
