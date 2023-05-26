@@ -62,10 +62,13 @@ enum SubCommand {
     },
     /// Mine for SOL
     Mine {
+        /// Prefix length
         #[clap(short, long)]
         difficulty: u8,
         #[clap(long)]
+        /// Reward amount in SOL
         reward: f64,
+        /// Target number of lamports to mine for
         #[clap(short, long, default_value = "1000000000")]
         target_lamports: u64,
     },
