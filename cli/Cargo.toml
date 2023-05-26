@@ -1,5 +1,5 @@
 [package]
-name = "devnet-pow-cli"
+name = "devnet-pow"
 version = "0.1.0"
 edition = "2021"
 
