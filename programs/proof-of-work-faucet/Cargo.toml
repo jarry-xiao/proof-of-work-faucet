@@ -1,8 +1,9 @@
 [package]
 name = "proof-of-work-faucet"
 version = "0.1.0"
-description = "Created with Anchor"
+description = "Democratizing access to devnet SOL"
 edition = "2021"
+license = "MIT"
 
 [lib]
 crate-type = ["cdylib", "lib"]
