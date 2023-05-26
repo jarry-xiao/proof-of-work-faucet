@@ -1,1 +1,1 @@
-# proof-of-work-faucet
+# Proof of Work Faucet
