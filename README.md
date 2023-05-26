@@ -3,7 +3,7 @@
 To download the CLI:
 
 ```
-cargo install devent-pow
+cargo install devnet-pow
 ```
 
 To run:
