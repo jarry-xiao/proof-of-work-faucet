@@ -38,7 +38,7 @@ Sample output:
 
 ```
 Faucet address: AUdh8YiqFq3ry5Bdn8XTnWM93GnzjGUYKoXRVdseZtuz
-Faucet balance: 18 SOL
+Faucet balance: 500 SOL
 ```
 
 To mine Devnet SOL:
