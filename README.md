@@ -61,12 +61,15 @@ To mine Devnet SOL:
 
 ```
 # Mine for 0.1 SOL
-$ devnet-pow mine --difficulty 3 --reward 0.1 --target-lamports 100000000 -ud
+$ devnet-pow mine --target-lamports 100000000 -ud
 ```
 
 Sample output:
 
 ```
-Keypair mined! Pubkey: AAAzGVeuWJHoDRbRHC2RhPMeCwsdwJTuw5XUXcPatwZk:
-Recieved 0.1 SOL from faucet: 4nPEb6HomarZyESH78QT4kHueitMxW2t5ZN8aynUTqUwgTSJ8LL2yFDrLTFEahd9sff4sfXJzr2NtRFZq3Bk3qM1
+Minimum difficulty: 3
+Setup complete! Starting mining process...
+
+Keypair mined! Pubkey: AAABCmr8KgfZePwZF8RqtCxnwDwosqD1YGsV15VhPCUy:
+Received 0.05 SOL from faucet AKDUUyPuHjwGqsX865vWKN6nY3SebNu7FsSoYysDzhDJ: 2i6UfWhDu6FZcPqVabQK65hC7tgFoiTdJoub8PsT1kYKZigz7GZkYiER8XUBurqbkD3R7fhZWCoTxDBPp4vhAtCK
 ```
