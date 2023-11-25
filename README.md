@@ -73,3 +73,16 @@ Setup complete! Starting mining process...
 Keypair mined! Pubkey: AAABCmr8KgfZePwZF8RqtCxnwDwosqD1YGsV15VhPCUy:
 Received 0.05 SOL from faucet AKDUUyPuHjwGqsX865vWKN6nY3SebNu7FsSoYysDzhDJ: 2i6UfWhDu6FZcPqVabQK65hC7tgFoiTdJoub8PsT1kYKZigz7GZkYiER8XUBurqbkD3R7fhZWCoTxDBPp4vhAtCK
 ```
+
+
+## Linux 
+Make sure you have the development packages of OpenSSL installed.
+
+Ubuntu
+```
+sudo apt install libssl-dev
+```
+Fedora
+```
+sudo dnf install openssl-devel
+```
